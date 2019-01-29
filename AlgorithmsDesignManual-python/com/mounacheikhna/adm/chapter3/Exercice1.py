@@ -7,7 +7,7 @@ def isParenValid(s):
             if not stack:
                 return False, i
             p = stack.pop()
-            if not stack or p[0] != '(':
+            if p[0] != '(':
                 return False, i
     return (True, -1) if not stack else (False, stack[0][1])
 
@@ -16,5 +16,6 @@ assert isParenValid("(") == (False, 0)
 assert isParenValid(")") == (False, 0)
 assert isParenValid(")(") == (False, 0)
 assert isParenValid("((") == (False, 0)
-print(isParenValid("()"))
 assert isParenValid("()") == (True, -1)
+assert isParenValid("())") == (False, 2)
+assert isParenValid("(())") == (True, -1)
