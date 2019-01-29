@@ -4,10 +4,7 @@ def isParenValid(s):
         if c in opened:
             stack.append((c, i))
         elif c in closed:
-            if not stack:
-                return False, i
-            p = stack.pop()
-            if p[0] != '(':
+            if not stack or stack.pop()[0] != '(':
                 return False, i
     return (True, -1) if not stack else (False, stack[0][1])
 
