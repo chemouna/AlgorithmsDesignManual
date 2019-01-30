@@ -15,59 +15,24 @@ class Node:
         self.next = None
 
     def str(self):
-        return str(self.value)
+        return 'ListNode{' + 'val=' + str(self.value) + ', ' + (self.next.str() if self.next else '') + '}'
 
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None
-
-    def add_node(self, value):
-        if not self.head:
-            self.__initialize_list(value)
-        else:
-            node = Node(value)
-            self.tail.next = node
-            self.tail = node
-
-    def print_list(self):
-        current_node = self.head
-
-        print('head ->', end=' '),
-        while current_node is not None:
-            print(current_node.value.str(), ' -> ', end=' '),
-
-            current_node = current_node.next
-
-        print('tail')
-
-    def reverse(self):
-        p = head = self.head
-
-        while p:
-            temp = p
-            p = head.next
-            t_next = p.next
-            head.next = t_next
-            p.next = temp
-
-            if not head.next:
-                self.head = p
-                break
-
-    def __initialize_list(self, value):
-        self.head = Node(value)
-        self.tail = self.head
+def reverse(head):
+    prev = None
+    while head:
+        nxt = head.next
+        head.next = prev
+        prev = head
+        head = nxt
+    return prev
 
 
-ll = LinkedList()
-ll.add_node(Node(1))
-ll.add_node(Node(2))
-ll.add_node(Node(3))
-ll.print_list()
-ll.reverse()
-ll.print_list()
+node1 = Node(1)
+node1.next = Node(2)
+node1.next.next = Node(3)
+print(node1.str())
+print(reverse(node1).str())
 
 ''''
 def reverse(head):
