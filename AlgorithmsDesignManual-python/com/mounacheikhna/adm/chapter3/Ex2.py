@@ -1,13 +1,3 @@
-"""
-class ListNode(object):
-    def __init__(self, x, nxt=None):
-        self.val = x
-        self.next = nxt
-
-    def str(self):
-        return 'ListNode{' + 'val=' + str(self.val) + ', ' + (self.next.str() if self.next else '') + '}'
-"""
-
 
 class Node:
     def __init__(self, value):
@@ -25,6 +15,14 @@ def reverse(head):
         head.next = prev
         prev = head
         head = nxt
+    return prev
+
+
+def reverseSol2(head):
+    prev = None
+    while head:
+        nxt, head.next = head.next, prev
+        prev, head = head, nxt
     return prev
 
 
